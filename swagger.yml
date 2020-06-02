@@ -1,0 +1,93 @@
+openapi: "3.0.2"
+info:
+  version: "1.0.0"
+  title: TestCalculator
+  description: |
+    # TestCalculator - RestAPI service for execute simple math operations
+
+paths:
+  /v1:
+    /addition:
+      post:
+        operationId: Addition
+        summary: "addition of two variables"
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestArgs"
+        responses:
+          "200":
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ExecutionResult'
+    /difference:
+      post:
+        operationId: Difference
+        summary: "difference of two variables"
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestArgs"
+        responses:
+          "200":
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ExecutionResult'
+    /multiplication:
+      post:
+        operationId: Multiplication
+        summary: "multiplication of two variables"
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestArgs"
+        responses:
+          "200":
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ExecutionResult'
+    /division:
+      operationId: Division
+        summary: "Division of two variables"
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestArgs"
+        responses:
+          "200":
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ExecutionResult'
+
+components:
+  schemas:
+    varyDecimal:
+      type: string
+      pattern: '^\d{1,}\.\d{1,6}$'
+
+    RequestArgs:
+      type: object
+      required:
+        - arg1
+        - arg2
+      properties:
+        arg1:
+          $ref: '#/components/schemas/varyDecimal'
+        arg2:
+          $ref: '#/components/schemas/varyDecimal'
+
+    ExecutionResult:
+      type: object
+        required:
+          - result
+        properties:
+          result:
+            type: string
