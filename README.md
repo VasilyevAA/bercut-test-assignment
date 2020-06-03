@@ -1,1 +1,0 @@
-# bercut-test-assignment
