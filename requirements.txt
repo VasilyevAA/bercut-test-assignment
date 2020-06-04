@@ -1,3 +1,6 @@
 Flask
 flask-restful-swagger-3
 flask_request_validator
+
+pytest
+requests

@@ -18,13 +18,13 @@ def prepare_response(data):
 def run_app():
     app = Flask(__name__)
     default_request_validator = validate_params(
-        Param('arg1', JSON, str, rules=[Pattern(r'^\d{1,}(\.?\d{1,6}$)?$')]),
-        Param('arg2', JSON, str, rules=[Pattern(r'^\d{1,}(\.?\d{1,6}$)?$')])
+        Param('arg1', JSON, str, rules=[Pattern(r'^\-?\d{1,}(\.?\d{1,6}$)?$')]),
+        Param('arg2', JSON, str, rules=[Pattern(r'^\-?\d{1,}(\.?\d{1,6}$)?$')])
     )
 
     @app.errorhandler(InvalidRequest)
     def handle_exception(e):
-        response = json.dumps({"msg": e.message})
+        response = json.dumps({"error": e.message})
         return response, 400
 
     @app.route('/v1/add', methods=['POST'])

@@ -7,7 +7,7 @@ info:
 basePath: /v1
 
 paths:
-  /addition:
+  /add:
     post:
       operationId: Addition
       summary: "addition of two variables"
@@ -22,10 +22,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExecutionResult'
-  /difference:
+  /diff:
     post:
       operationId: Difference
-      summary: "difference of two variables"
+      summary: "difference of two variables. arg1 - arg2"
       requestBody:
         content:
           application/json:
@@ -37,7 +37,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExecutionResult'
-  /multiplication:
+  /multi:
     post:
       operationId: Multiplication
       summary: "multiplication of two variables"
@@ -52,9 +52,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExecutionResult'
-  /division:
+  /div:
     operationId: Division
-    summary: "Division of two variables"
+    summary: "Division of two variables arg1/arg2"
     requestBody:
       content:
         application/json:
@@ -71,7 +71,7 @@ components:
   schemas:
     varyDecimal:
       type: string
-      pattern: '^\d{1,}(\.?\d{1,6}$)?'
+      pattern: '^\-?\d{1,}(\.?\d{1,6}$)?$'
 
     RequestArgs:
       type: object
