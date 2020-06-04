@@ -10,7 +10,7 @@ paths:
   /add:
     post:
       operationId: Addition
-      summary: "addition of two variables"
+      summary: "addition of two variables arg1 + arg2"
       requestBody:
         content:
           application/json:
@@ -40,7 +40,7 @@ paths:
   /multi:
     post:
       operationId: Multiplication
-      summary: "multiplication of two variables"
+      summary: "multiplication of two variables arg1 * arg2"
       requestBody:
         content:
           application/json:
