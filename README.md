@@ -6,9 +6,16 @@
 https://docs.google.com/document/d/1xE4vC8l0VhuhKLYJuz7AUMBRTtOIvLShneQoLzTULJo/edit?usp=sharing
 
 2) Develop RestApi calculator service
+Для данной задачи было не особо принципиально что использовать) aiohttp, flask or django
+НО я выбирал между aiohttp и flask. Flask чуть более просто, но с очень большим кол-вом
+разнообразных плагинов. У aiohttp тоже есть разнообразные плагины, но их меньше. Так же, если бы был вопрос по скорости и нагрузке, 
+то выбрал бы aiohttp, его проще контролировать в плане максимальных очередей.
+
+Why pytest?... Community and plugins, clear python. Тут вопрос, а что еще можно рассмотреть... nosetest, он вроде устарел. 
+Robot, оверхед по изучению еще одного псевдоязыка. Unittest, меньше расширейний, чем у pytest. Behave, тут он совсем не к месту)
 
 ### Specification
-Support 4 resources with same signature for call. For full information check swagger file
+Support 4 resources with same signature for call. For full information check swagger file. Default url: http://0.0.0.0:23232
 ```
 /v1/add
 /v1/diff
