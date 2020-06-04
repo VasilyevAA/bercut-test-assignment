@@ -28,7 +28,7 @@ def test_positive_check_all_numbers_can_be_used(additional_request, arg1, arg2, 
 
 @pytest.mark.parametrize(
     'invalid_arg',
-    ['--1', '+1', '0.0000011', None, 'asdqwe'],
+    ['--1', '+1', '0.0000011', None, 'asdqwe', '0x1', '', 'undefined'],
 )
 @pytest.mark.parametrize('invalid_first_arg', [True, False])
 def test_negative_request_validator_with_invalid_values(additional_request, invalid_arg, invalid_first_arg):
