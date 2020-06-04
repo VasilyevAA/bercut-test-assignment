@@ -1,7 +1,7 @@
 import json
-from decimal import Decimal
+from decimal import Decimal, Context
 
-from flask import Flask, jsonify, abort
+from flask import Flask, jsonify, Response
 from flask_request_validator.exceptions import InvalidRequest
 from flask_request_validator import (
     JSON,
@@ -10,9 +10,11 @@ from flask_request_validator import (
     validate_params
 )
 
+ctx = Context(20, Emin=-999999999999999, Emax=999999999999999)
+
 
 def prepare_response(data):
-    return jsonify({'result': str(data)})
+    return jsonify({'result': data.normalize().to_eng_string(ctx)})
 
 
 def run_app():
@@ -25,7 +27,7 @@ def run_app():
     @app.errorhandler(InvalidRequest)
     def handle_exception(e):
         response = json.dumps({"error": e.message})
-        return response, 400
+        return Response(response, mimetype='application/json'), 400
 
     @app.route('/v1/add', methods=['POST'])
     @default_request_validator
@@ -47,7 +49,7 @@ def run_app():
     def division(arg1, arg2):
         arg2 = Decimal(arg2)
         if arg2 == 0:
-            abort(400)
+            raise InvalidRequest('Division by zero!')
         return prepare_response(Decimal(arg1) / arg2)
 
     return app
